@@ -1,6 +1,5 @@
-package tests.carttests;
+package tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import screens.cart.CartPage;
@@ -8,8 +7,6 @@ import screens.cart.CheckoutPage;
 import screens.category.CategoryPage;
 import screens.main.HomePage;
 import tests.testbase.TestBase;
-
-import java.time.Duration;
 
 public class CartTests extends TestBase {
 
