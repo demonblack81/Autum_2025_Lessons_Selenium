@@ -8,39 +8,37 @@ import screens.category.CategoryPage;
 import screens.main.HomePage;
 import tests.testbase.TestBase;
 
+import static com.codeborne.selenide.Condition.text;
+
 public class CartTests extends TestBase {
+
 
     @Test
     public void addDuckInCart() throws InterruptedException {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         homePage.clickOnBlueDuckInMostPopular();
 
-        CategoryPage categoryPage = new CategoryPage(driver);
+        CategoryPage categoryPage = new CategoryPage();
         categoryPage.clickOnButtonAddToCart();
 
-        CartPage cartPage = new CartPage(driver);
-        String quantityInCartInt = cartPage.getQuantityInCart("1");
-
-        Assert.assertEquals(quantityInCartInt, "1");
+        CartPage cartPage = new CartPage();
+        cartPage.quantity.shouldHave(text("1"));
     }
 
     @Test
     public void checkSumInCheckOutPage() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         homePage.clickOnBlueDuckInMostPopular();
 
-        CategoryPage categoryPage = new CategoryPage(driver);
+        CategoryPage categoryPage = new CategoryPage();
         categoryPage.clickOnButtonAddToCart();
 
-        CartPage cartPage = new CartPage(driver);
-        cartPage.getQuantityInCart("1");
+        CartPage cartPage = new CartPage();
+        cartPage.quantity.shouldHave(text("1"));
         cartPage.clickOnCheckoutLink();
 
-
-        CheckoutPage checkoutPage = new CheckoutPage(driver);
-        String sumInCheckotText =  checkoutPage.getSumInCheckout();
-
-        Assert.assertEquals(sumInCheckotText, "$20.00");
+        CheckoutPage checkoutPage = new CheckoutPage();
+        checkoutPage.sum.shouldHave(text("$20.00"));
 
     }
 

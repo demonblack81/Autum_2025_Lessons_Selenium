@@ -1,18 +1,13 @@
 package screens.cart;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$;
 
 public class CheckoutPage {
-    private By sumLocator = By.cssSelector("td.sum");
 
-    private WebDriver driver;
-
-    public CheckoutPage(WebDriver driver) {
-        this.driver = driver;
-    }
+    public SelenideElement sum = $("td.sum");
 
     public String getSumInCheckout() {
-        return driver.findElement(sumLocator).getText();
+        return sum.getText();
     }
 }
