@@ -1,3 +1,5 @@
+package old;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +11,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import javax.swing.*;
 import java.time.Duration;
 
 public class TestsForAcme {
@@ -42,7 +43,6 @@ public class TestsForAcme {
         builder.moveToElement(menuRubberDucks).perform();
 
         menuSubcategory.click();
-
 
         WebElement titleSubcategory = (new WebDriverWait(driver, Duration.ofSeconds(10))).until(
                 ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1.title")));
