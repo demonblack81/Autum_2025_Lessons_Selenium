@@ -1,7 +1,6 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
-import org.testng.Assert;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import screens.category.SubcategoryPage;
 import screens.main.MenuPage;
@@ -11,7 +10,8 @@ import static com.codeborne.selenide.Condition.text;
 
 public class CategoryTests extends TestBase {
 
-    @Test
+    @Story("On Home page in menu click on Subcategory and chek title subcategory")
+    @Test(description = "Open Subcategory from Category form")
     public void openSubcategoryTest() {
         MenuPage menuPage = new MenuPage();
         menuPage.clickOnSubcategory();

@@ -1,6 +1,6 @@
 package tests;
 
-import org.testng.Assert;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import screens.cart.CartPage;
 import screens.cart.CheckoutPage;
@@ -12,8 +12,8 @@ import static com.codeborne.selenide.Condition.text;
 
 public class CartTests extends TestBase {
 
-
-    @Test
+    @Story("On Home page click on duck and check in cart added one item")
+    @Test(description = "Add Duck in Cart")
     public void addDuckInCart() throws InterruptedException {
         HomePage homePage = new HomePage();
         homePage.clickOnBlueDuckInMostPopular();
@@ -25,7 +25,8 @@ public class CartTests extends TestBase {
         cartPage.quantity.shouldHave(text("1"));
     }
 
-    @Test
+    @Story("On Home page click on duck, click on checkout link and check sum on checkout page")
+    @Test(description = "Add Duck in basket and check sum in checkout page")
     public void checkSumInCheckOutPage() {
         HomePage homePage = new HomePage();
         homePage.clickOnBlueDuckInMostPopular();

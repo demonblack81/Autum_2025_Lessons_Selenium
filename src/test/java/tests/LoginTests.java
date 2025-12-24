@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.text;
 
 public class LoginTests extends TestBase {
 
-    @Test
+    @Test(description = "Login with correct credentials")
     public void successfulLoginTest() {
         LoginPage loginPage = new LoginPage();
 
@@ -17,7 +17,7 @@ public class LoginTests extends TestBase {
         loginPage.noticeSuccess.shouldHave(text("You are now logged in as ilya charnitski."));
     }
 
-    @Test
+    @Test(description = "Login with incorrect credentials")
     public void wrongLoginTest() {
         LoginPage loginPage = new LoginPage();
 
