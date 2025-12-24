@@ -1,23 +1,17 @@
 package screens.category;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 
-import java.time.Duration;
+import static com.codeborne.selenide.Selenide.$;
 
+@Feature("UI Subcategory")
 public class SubcategoryPage {
-    private By titleSubcategoryLocator = By.cssSelector("h1.title");
+    public SelenideElement titleSubcategory = $("h1.title");
 
-    private WebDriver driver;
-
-    public SubcategoryPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
+    @Step("Get Text in menu Subcategory")
     public String getSubcategoryText() {
-        return (new WebDriverWait(driver, Duration.ofSeconds(10))).until(
-                ExpectedConditions.presenceOfElementLocated(titleSubcategoryLocator)).getText();
+        return titleSubcategory.getText();
     }
 }

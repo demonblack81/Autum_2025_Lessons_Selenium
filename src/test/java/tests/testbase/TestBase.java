@@ -1,33 +1,27 @@
 package tests.testbase;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import com.codeborne.selenide.Configuration;
 import org.testng.annotations.*;
 
-import static tests.testbase.Browser.*;
+import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+
 
 public class TestBase {
-    Browser browser = Browser.valueOf(System.getProperty("browser", "chrome"));
-    protected WebDriver driver;
-
-    protected final String baseUrl = "https://litecart.stqa.ru/en/";
 
     @BeforeMethod
     public void setUp() {
-        driver = switch(browser) {
-            case chrome -> new ChromeDriver();
-            case firefox -> new FirefoxDriver();
-            case safari -> new SafariDriver();
-            case edge -> new EdgeDriver();
-        };
-        driver.get(baseUrl);
+        Configuration.baseUrl = "https://litecart.stqa.ru/en/";
+        Configuration.browser = CHROME;
+        Configuration.pageLoadTimeout = 8000L;
+        Configuration.browserSize = "1920X1080";
+
+        open(Configuration.baseUrl);
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.close();
+        closeWebDriver();
     }
 }

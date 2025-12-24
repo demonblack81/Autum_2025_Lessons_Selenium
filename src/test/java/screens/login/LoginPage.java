@@ -1,40 +1,38 @@
 package screens.login;
 
+import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import static com.codeborne.selenide.Selenide.$;
 
+@Epic("Autorization and Autificztion")
+@Feature("UI Login form")
 public class LoginPage {
 
-    private By userNameInputLocator = By.name("email");
-    private By passwordInputLocator = By.name("password");
-    private By loginButtonLocator = By.name("login");
-    private By noticeSuccessLocator = By.cssSelector(".notice.success");
-    private By noticeWrongLocator = By.cssSelector(".notice.errors");
+    private SelenideElement userNameInput = $(By.name("email"));
+    private SelenideElement passwordInput = $(By.name("password"));
+    private SelenideElement loginButton = $(By.name("login"));
+    public SelenideElement noticeSuccess = $(By.cssSelector(".notice.success"));
+    public SelenideElement noticeWrong = $(By.cssSelector(".notice.errors"));
 
-    private WebDriver driver;
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
+    @Step("Attempt to Login with credentials")
     public void attemptLogin(String username, String password) {
-        driver.findElement(userNameInputLocator).sendKeys(username);
-        driver.findElement(passwordInputLocator).sendKeys(password);
-        driver.findElement(loginButtonLocator).click();
+        userNameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
     }
 
+    @Step("Get Success Notice Text")
     public String getSuccessNoticeText() {
-        return (new WebDriverWait(driver, Duration.ofSeconds(2))).until(
-                ExpectedConditions.presenceOfElementLocated(noticeSuccessLocator)).getText();
+        return noticeSuccess.getText();
     }
 
+    @Step("Get Wrong Notice Text")
     public String getWrongNoticeText() {
-        return (new WebDriverWait(driver, Duration.ofSeconds(5))).until(
-                ExpectedConditions.presenceOfElementLocated(noticeWrongLocator)).getText();
+        return noticeWrong.getText();
     }
 
 }

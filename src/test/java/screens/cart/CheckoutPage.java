@@ -1,18 +1,18 @@
 package screens.cart;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Selenide.$;
+
+@Feature("UI Checkout form")
 public class CheckoutPage {
-    private By sumLocator = By.cssSelector("td.sum");
 
-    private WebDriver driver;
+    public SelenideElement sum = $("td.sum");
 
-    public CheckoutPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
+    @Step("Get Payment Due On Checkout Page")
     public String getSumInCheckout() {
-        return driver.findElement(sumLocator).getText();
+        return sum.getText();
     }
 }

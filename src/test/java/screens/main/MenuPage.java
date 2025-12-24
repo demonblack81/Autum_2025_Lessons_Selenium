@@ -1,23 +1,20 @@
 package screens.main;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
+import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Selenide.*;
+
+@Feature("UI Menu form")
 public class MenuPage {
-    private By menuRubberDucksLocator = By.cssSelector("#site-menu > ul > li.category-1");
-    private By menuSubcategoryLocator = By.xpath("//li[@class='category-2']");
+    private SelenideElement menuRubberDucks = $("#site-menu > ul > li.category-1");
+    private SelenideElement menuSubcategory = $x("//li[@class='category-2']");
 
-    private WebDriver driver;
-
-    public MenuPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
+    @Step("Click on link Subcategory in menu")
     public void clickOnSubcategory() {
-        Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(menuRubberDucksLocator)).perform();
-        driver.findElement(menuSubcategoryLocator).click();
+        actions().moveToElement(menuRubberDucks).perform();
+        menuSubcategory.click();
     }
 
 }
